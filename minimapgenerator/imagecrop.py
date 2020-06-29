@@ -1,8 +1,10 @@
+from PIL import Image
 import os
-images = os.listdir("minimapgenerator/mixedpictures/")
+images = os.listdir("mixedpictures/")
 print(images[0])
 x = 0
 for image in images:
     x += 1
-    image = image.crop((1645, 805, 1920, 1080))
-    image.save("croppedminimap/minimap" + str(x) + ".jpg")
+    im = Image.open("mixedpictures/" + image)
+    im = im.crop((1645, 805, 1920, 1080))
+    im.save("croppedminimap/minimap" + str(x) + ".jpg")

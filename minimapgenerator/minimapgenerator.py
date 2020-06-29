@@ -11,11 +11,10 @@ print("1")
 
 #place champ icons randomly on minimap and make txt file with coordinates and classes
 
-img = Image.open('championicons/Darius.jpg', 'r')
-img_w, img_h = img.size
-background = Image.new('RGBA', (1440, 900), (255, 255, 255, 255))
-bg_w, bg_h = background.size
-offset = ((bg_w - img_w) // 2, (bg_h - img_h) // 2)
-background.paste(img, offset)
-background.save('out.png')
-print("done")
+def placeimage(background, foreground):
+    background.paste(foreground, (200, 200), foreground)
+    background.show()
+
+background = Image.open("croppedminimap/" + "minimap1.jpg")
+foreground = Image.open("resizedtransparentchampionicons/" + "zyra.png")
+placeimage(background, foreground)
