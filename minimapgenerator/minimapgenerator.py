@@ -11,21 +11,22 @@ def placeimage(background, foreground, pos):
     background.paste(foreground, pos, foreground)
     return background
 
-def checkpos(pos, previouspos, touching):
+def checkpos(pos, previouspos, touchingrandomizer):
 
-    if touching == False:
+    if touchingrandomizer == False:
         #this will return false if any icon is touching another
         for oldpos in previouspos:
             if ((oldpos[0] - pos[0]) ** 2 + (oldpos[1] - pos[1]) ** 2) ** 0.5 < 24:
                 return False
         return True
-    if touching == True:
+
+    if touchingrandomizer == True:
         #this will return false if any icon is not touching at least one other icon
         for oldpos in previouspos:
-            if ((oldpos[0] - pos[0]) ** 2 + (oldpos[1] - pos[1]) ** 2) ** 0.5 > 24:
-                return False
-        return True
-def makerandomminimap(touching, f, numofchamps):
+            if ((oldpos[0] - pos[0]) ** 2 + (oldpos[1] - pos[1]) ** 2) ** 0.5 < 24:
+                return True
+        return False
+def makerandomminimap(iconstouching, f, numofchamps):
 
     images = listdir(minimapdir)
     minimap = Image.open(minimapdir + images[randint(0, len(images) - 1)])
@@ -35,13 +36,16 @@ def makerandomminimap(touching, f, numofchamps):
     for i in range(numofchamps):
        foundpos = False
        pos = [randint(3,229), randint(3,229)] #pixels 0,0 are at the top right of images
-       while(foundpos == False and len(previouspos) > 0 and touching == False):
+       touchingrandomizer = iconstouching
+       if iconstouching == True and randint(1, 2) == 2:
+           touchingrandomizer = False
+       while(foundpos == False and len(previouspos) > 0 and touchingrandomizer == False):
            pos = [randint(3,229), randint(3,229)]
-           foundpos = checkpos(pos, previouspos, touching)
+           foundpos = checkpos(pos, previouspos, touchingrandomizer)
 
-       while(foundpos == False and len(previouspos) > 0 and touching == True):
+       while(foundpos == False and len(previouspos) > 0 and touchingrandomizer == True):
            pos = [randint(3,229), randint(3,229)]
-           foundpos = checkpos(pos, previouspos, touching)
+           foundpos = checkpos(pos, previouspos, touchingrandomizer)
        previouspos.append(pos)
        object = randint(0, len(champs) - 1)
        champ = champs[object].strip("\n")
@@ -58,7 +62,7 @@ subfolder = "data/"
 folder = "train/"
 iconstouching = True
 maxnumofchamps = 10
-numofimages = 100000
+numofimages = 1000000
 championicondir = "resizedtransparentchampionicons/"
 championlistdir = "lolchampsclean.txt"
 
