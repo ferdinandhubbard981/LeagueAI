@@ -51,7 +51,7 @@ def makerandomminimap(iconstouching, f, numofchamps):
        champ = champs[object].strip("\n")
        #print(str(object) + " " + str((pos[0] + 12) / 256.0) + " " + str(((pos[1] + 12)) / 256.0) + " " + str(26 / 256.0) + " " + str(26 / 256.0) + "\n")
        f.write(str(object) + " " + str((pos[0] + 12) / 256.0) + " " + str(((pos[1] + 12)) / 256.0) + " " + str(26 / 256.0) + " " + str(26 / 256.0) + "\n")
-       championicon = Image.open(championicondir + champ.replace(" ", "_") + ".PNG")
+       championicon = Image.open(championicondir + champ.replace(" ", "_") + ".png")
        #print(champ + " pos: " + str(pos))
        minimap = placeimage(minimap, championicon, pos)
     return minimap
