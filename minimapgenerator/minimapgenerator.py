@@ -76,7 +76,7 @@ def makerandomminimap(iconstouching, f, numofchamps):
 
 #variables to change for new datasets
 minimapdir = "newcroppedminimap/"
-subfolder = args.output_path + "data/"
+subfolder = args.output_path
 folder = "train/"
 iconstouching = args.touching
 maxnumofchamps = 10
