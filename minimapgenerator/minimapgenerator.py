@@ -1,12 +1,30 @@
 from os import listdir
 from PIL import Image
 from random import randint
+import argparse
 #load random minimap image
 #pick 10 random champ icons
 
 
 #place champ icons randomly on minimap and make txt file with coordinates and classes
+parser = argparse.ArgumentParser(
+    description='Run a YOLO_v4 style detection model on the LoL minimap. Choose')
 
+parser.add_argument(
+    '--output_path',
+    help='path to data folder',
+    default='')
+parser.add_argument(
+    '--num',
+    help='number of output images',
+    type=int,
+    default=100000)
+parser.add_argument(
+    '--touching',
+    help='if icons should be touching or not',
+    type=bool,
+    default=True)
+args = parser.parse_args()
 def placeimage(background, foreground, pos):
     background.paste(foreground, pos, foreground)
     return background
@@ -58,11 +76,11 @@ def makerandomminimap(iconstouching, f, numofchamps):
 
 #variables to change for new datasets
 minimapdir = "newcroppedminimap/"
-subfolder = "data/"
+subfolder = args.output_path + "data/"
 folder = "train/"
-iconstouching = True
+iconstouching = args.touching
 maxnumofchamps = 10
-numofimages = 1000000
+numofimages = args.num
 championicondir = "resizedtransparentchampionicons/"
 championlistdir = "lolchampsclean.txt"
 
