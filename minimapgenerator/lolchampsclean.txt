@@ -11,6 +11,7 @@ Aurelion Sol
 Azir
 Bard
 Blitzcrank
+Blue Kayn
 Brand
 Braum
 Caitlyn
@@ -90,6 +91,7 @@ Qiyana
 Quinn
 Rakan
 Rammus
+Red Kayn
 Rek'Sai
 Renekton
 Rengar
