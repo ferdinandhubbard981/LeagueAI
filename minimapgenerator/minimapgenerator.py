@@ -23,7 +23,12 @@ parser.add_argument(
     '--touching',
     help='if icons should be touching or not',
     type=bool,
-    default=True)
+    default=False)
+parser.add_argument(
+    '--semitouching',
+    help='if icons are semi-touching or not',
+    type=bool,
+    default=False)
 args = parser.parse_args()
 def placeimage(background, foreground, pos):
     background.paste(foreground, pos, foreground)
@@ -54,16 +59,13 @@ def makerandomminimap(iconstouching, f, numofchamps):
     for i in range(numofchamps):
        foundpos = False
        pos = [randint(3,229), randint(3,229)] #pixels 0,0 are at the top right of images
-       touchingrandomizer = iconstouching
-       if iconstouching == True and randint(1, 2) == 2:
+       touchingrandomizer = iconssemitouching
+       if iconssemitouching == True and randint(1, 3) == 1:
            touchingrandomizer = False
-       while(foundpos == False and len(previouspos) > 0 and touchingrandomizer == False):
-           pos = [randint(3,229), randint(3,229)]
-           foundpos = checkpos(pos, previouspos, touchingrandomizer)
 
-       while(foundpos == False and len(previouspos) > 0 and touchingrandomizer == True):
+       while(foundpos == False and len(previouspos) > 0):
            pos = [randint(3,229), randint(3,229)]
-           foundpos = checkpos(pos, previouspos, touchingrandomizer)
+           foundpos = checkpos(pos, previouspos, touchingrandomizer or iconstouching)
        previouspos.append(pos)
        object = randint(0, len(champs) - 1)
        champ = champs[object].strip("\n")
@@ -79,6 +81,7 @@ minimapdir = "newcroppedminimap/"
 subfolder = args.output_path
 folder = "train/"
 iconstouching = args.touching
+iconssemitouching = args.semitouching
 maxnumofchamps = 10
 numofimages = args.num
 championicondir = "resizedtransparentchampionicons/"
