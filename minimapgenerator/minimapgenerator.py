@@ -62,7 +62,7 @@ subfolder = "data/"
 folder = "train/"
 iconstouching = True
 maxnumofchamps = 10
-numofimages = 100000
+numofimages = 1000
 championicondir = "resizedtransparentchampionicons/"
 championlistdir = "lolchampsclean.txt"
 
