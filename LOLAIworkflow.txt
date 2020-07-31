@@ -1,0 +1,22 @@
+- training model
+	- remake simple league of legends
+	- hardcode all non-AI features
+	- make neural network
+	- train neural network with some framework
+
+- use model on game
+	- get all inputs using cheat engine and c++ to feed to model
+	- apply output of model to ingame using cheat engine and c++
+
+
+AI
+
+inputs:
+- 2-dimensional array with enemy champions with their strength factor (includes hp, mana, level, stats...) relative to you, position relative to you
+- 2-dimensional array with ally champions with their strength factor (includes hp, mana, level, stats...) relative to you, position relative to you 
+- a 1d vector representing the minion push advantage in the lane
+outputs:
+- farm
+- fight
+- siege
+- flee
